@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:emania/custom_icons.dart';
 import 'package:emania/models/category.dart';
 import 'package:emania/models/product.dart';
-import 'package:http/http.dart' ;
+import 'package:dio/dio.dart';
 
 class Data {
 
@@ -14,7 +14,14 @@ class Data {
     Category("Other", Icons.timeline)
   ];
 
-  List<Product> product = http.get();
+  List<Product> product ;
+
+  void geth() async {
+    try {
+      Response response = await Dio().get("https://jsonplaceholder.typicode.com/posts");
+      print(response.data.toString());
+    }catch(e){print(e);}
+  }
 
   static List<Product> products = [
     Product(

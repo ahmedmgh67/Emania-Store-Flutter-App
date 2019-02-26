@@ -31,6 +31,12 @@ class MyAppState extends State<MyApp> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   String searchTerm = "";
 
+  @override
+  initState() {
+    super.initState();
+    Data().geth();
+  }
+
   List<Product> shuffleAndReturn(List<Product> products) {
     List<Product> r = products;
     r.shuffle();
