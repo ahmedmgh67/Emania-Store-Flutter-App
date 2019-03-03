@@ -19,7 +19,7 @@ export 'package:emania/widgets/shopping_basket_list_item.dart';
 export 'package:emania/api/product.dart';
 export 'package:emania/bloc/productsBloc.dart';
 export 'package:emania/main.dart';
-//export 'package:emania/data.dart';
+export 'package:emania/data.dart';
 export 'package:emania/custom_icons.dart';
 export 'package:flutter/material.dart';
 //export 'package:flutter/cupertino.dart';

@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:emania/data.dart';
-import 'package:emania/pages/main_page.dart';
-import 'package:emania/pages/wishlist_page.dart';
-import 'package:emania/widgets/shopping_basket_list_item.dart';
+
+import 'package:emania/import.dart';
 
 class ShoppingBasketPage extends StatefulWidget {
   @override

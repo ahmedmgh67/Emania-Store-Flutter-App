@@ -1,5 +1,10 @@
-
-import 'package:emania/import.dart';
+import 'package:flutter/material.dart';
+import 'package:emania/custom_icons.dart';
+import 'package:emania/models/category.dart';
+import 'package:emania/models/product.dart';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Data {
 
@@ -11,29 +16,17 @@ class Data {
     Category("Other", Icons.timeline)
   ];
 
-  List<Product> product ;
+  List<Map<String, dynamic>> product ;
+  
 //https://jsonplaceholder.typicode.com/posts
 //https://emania.000webhostapp.com/wp-json/wc/v3/products
 //https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690
-  void geth() async {
-    try {
-      /*Response response = await Dio().get("https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690");
-      print(response.data.toString());*/
-      var res =await get("https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690");
-      
-      print(jsonDecode(res.body));
-    }catch(e){print(e);}
-  }
 
-  void generate ()async{
-    try {
-      var response = await get("https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690");
-      if (response.statusCode != 200)throw Exception("Request error");
-      var resDecoded = jsonDecode(response.body);
-      var lent = 1;
-    } catch (e) {
-      throw Exception(e);
-    }
+  dynamic request() async {
+    var json = await http.get("url");
+    var str =jsonDecode(json.body);
+    product = str;
+    return str;
   }
 
   static List<Product> products = [
