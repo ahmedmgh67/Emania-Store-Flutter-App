@@ -28,3 +28,4 @@ export 'package:http/http.dart';
 //export 'package:dio/dio.dart';
 export 'dart:convert';
 export 'package:splashscreen/splashscreen.dart';
+export 'package:show_dialog/show_dialog.dart';

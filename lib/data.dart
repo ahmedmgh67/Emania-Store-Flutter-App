@@ -17,19 +17,28 @@ class Data {
   ];
 
   List<Map<String, dynamic>> product ;
+
+  static List<Product> products;
   
 //https://jsonplaceholder.typicode.com/posts
 //https://emania.000webhostapp.com/wp-json/wc/v3/products
 //https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690
 
   dynamic request() async {
-    var json = await http.get("url");
-    var str =jsonDecode(json.body);
+    var _json = await http.get("https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690");
+    var str =jsonDecode(_json.body);
     product = str;
+    int a = str["name"].length;
+
+    for (var i = 0; i < a; i++) {
+      products.add(
+        Product("",str["name"][i],str["price"][i],"",Category("name", Icons.ac_unit),2));
+    }
+
     return str;
   }
 
-  static List<Product> products = [
+  /*static List<Product> products = [
     Product(
         "https://images.pexels.com/photos/112811/pexels-photo-112811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         "Elegant Lamp",
@@ -79,7 +88,7 @@ class Data {
         "Potted Rosemary Plant",
         getCategoryFromName("Plant"),
         6)
-  ];
+  ];*/
 
   static Category getCategoryFromName(name) {
     return categories.firstWhere(
