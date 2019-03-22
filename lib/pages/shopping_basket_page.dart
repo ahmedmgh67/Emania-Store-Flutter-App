@@ -89,6 +89,6 @@ class ShoppingBasketPageState extends State<ShoppingBasketPage> {
                     ],
                   ),
                 ),
-              ));
+              ),);
   }
 }
