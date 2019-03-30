@@ -22,18 +22,24 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   String searchTerm = "";
+    bool isLoaded = false;
 
-  @override
+
+  /*@override
   initState() {
     super.initState();
-    //Data().geth();
-  }
+    Data().request(context);
+    setState(() {
+      isLoaded = true;
+    });
+  }*/
 
   List<Product> shuffleAndReturn(List<Product> products) {
     List<Product> r = products;
     r.shuffle();
     return r;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +89,7 @@ class MyAppState extends State<MyApp> {
           searchTerm = s;
         });
       }, scaffoldKey),
-      body: searchTerm == ""
+      body: /*!isLoaded? Center(child: CircularProgressIndicator(),): */searchTerm == ""
           ? ListView(
               physics: ClampingScrollPhysics(),
               children: <Widget>[
