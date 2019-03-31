@@ -1,7 +1,7 @@
 import 'package:emania/import.dart';
 import 'package:http/http.dart' as http;
 
-/*class SplashPage extends StatelessWidget {
+class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
@@ -17,9 +17,9 @@ import 'package:http/http.dart' as http;
       ),
     );
   }
-}*/
+}
 
-class SplashPage extends StatefulWidget {
+/*class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
 }
@@ -63,7 +63,7 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 }
-
+*/
 
 /*class SplashPage extends StatefulWidget {
   @override

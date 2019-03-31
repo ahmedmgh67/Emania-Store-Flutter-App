@@ -24,14 +24,14 @@ class Data {
 //https://emania.000webhostapp.com/wp-json/wc/v3/products
 //https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690
 
-   static void request(BuildContext context, ) async {
-    var json = await http.get("http://192.168.1.10:6112/api/products");
+    void request(BuildContext context, ) async {
+    var json = await http.get("https://emania-store-api.herokuapp.com/api/products");
     var decoded =jsonDecode(json.body);
     for (var i = 0; i < decoded["id"].length; i++) {
       products.add(
         Product(decoded["image"][i][0],decoded["name"][i],decoded["price"][i],"",Category("name", Icons.ac_unit),decoded["id"][i]));
     }
-    if(products =null){}
+    if(products == null){}
    }
 
   /*static List<Product> products = [

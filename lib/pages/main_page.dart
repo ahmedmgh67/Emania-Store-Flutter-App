@@ -25,14 +25,14 @@ class MyAppState extends State<MyApp> {
     bool isLoaded = false;
 
 
-  /*@override
+  @override
   initState() {
     super.initState();
     Data().request(context);
     setState(() {
       isLoaded = true;
     });
-  }*/
+  }
 
   List<Product> shuffleAndReturn(List<Product> products) {
     List<Product> r = products;
