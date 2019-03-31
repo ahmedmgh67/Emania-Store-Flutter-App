@@ -28,7 +28,6 @@ class MyAppState extends State<MyApp> {
   @override
   initState() {
     super.initState();
-    Data().request(context);
     setState(() {
       isLoaded = true;
     });
@@ -89,7 +88,7 @@ class MyAppState extends State<MyApp> {
           searchTerm = s;
         });
       }, scaffoldKey),
-      body: /*!isLoaded? Center(child: CircularProgressIndicator(),): */searchTerm == ""
+      body: /*!isLoaded ? Center(child: CircularProgressIndicator(),):*/searchTerm == ""
           ? ListView(
               physics: ClampingScrollPhysics(),
               children: <Widget>[
