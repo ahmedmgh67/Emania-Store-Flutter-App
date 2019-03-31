@@ -1,8 +1,5 @@
 import 'package:emania/import.dart';
-import 'package:http/http.dart' as http;
-
 import 'dart:core';
-import 'dart:async';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
