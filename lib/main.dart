@@ -1,10 +1,15 @@
 import 'import.dart';
 
-void main() => runApp(
-      MaterialApp(
-        theme:
-            ThemeData(fontFamily: "Quicksand", primaryColor: Color(0xff215AED)),
-        debugShowCheckedModeBanner: false,
-        home: SplashPage(),
+void main() {
+  Data.request();
+  runApp(
+    MaterialApp(
+      theme: ThemeData(
+        fontFamily: "Quicksand",
+        primaryColor: Color.fromARGB(255, 149, 27, 57),
       ),
-    );
+      debugShowCheckedModeBanner: false,
+      home: SplashPage(),
+    ),
+  );
+}

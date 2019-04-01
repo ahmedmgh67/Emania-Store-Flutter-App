@@ -16,22 +16,27 @@ class Data {
     Category("Other", Icons.timeline)
   ];
 
-  //List<Map<String, dynamic>> product ;
+   List<Product> product;
 
-  static List<Product> products;
+   static List<Product> products;
+
+
   
 //https://jsonplaceholder.typicode.com/posts
 //https://emania.000webhostapp.com/wp-json/wc/v3/products
 //https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690
 
-  static void request(BuildContext context, ) async {
+  static void request() async {
     var json = await http.get("https://emania-store-api.herokuapp.com/api/products");
     var decoded =jsonDecode(json.body);
+    print(decoded);
     for (var i = 0; i < decoded.length; i++) {
       products.add(
-        Product(decoded["image"][i][0],decoded["name"][i],decoded["price"][i],"",Category("name", Icons.ac_unit),i));
+        Product(decoded["image"][i][0],decoded["name"][i],decoded["price"][i],"",Category("name", Icons.ac_unit),i));  
     }
-    if(products == null){}
+
+    //products = product;
+    //return products==null ? false: true;
   }
 
   /*static List<Product> products = [

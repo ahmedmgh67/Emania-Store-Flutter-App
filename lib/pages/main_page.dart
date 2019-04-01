@@ -1,14 +1,5 @@
 import 'package:emania/import.dart';
 
-
-/*void main() => runApp(MaterialApp(
-    theme: ThemeData(fontFamily: "Quicksand", primaryColor: Color(0xff215AED)),
-    debugShowCheckedModeBanner: false,
-    home: MyApp()));*/
-
-//TODO: Wish list
-//TODO: Nav drawer
-
 class MyApp extends StatefulWidget {
   static ShoppingBasket shoppingBasket = ShoppingBasket();
   static WishList wishList = WishList();
@@ -22,22 +13,16 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   String searchTerm = "";
-    bool isLoaded = false;
+  bool isLoaded = false;
 
 
-  @override
-  initState() {
-    super.initState();
-    setState(() {
-      isLoaded = true;
-    });
-  }
 
-  List<Product> shuffleAndReturn(List<Product> products) {
+
+  /*List<Product> shuffleAndReturn(List<Product> products) {
     List<Product> r = products;
     r.shuffle();
     return r;
-  }
+  }*/
 
 
   @override
@@ -117,10 +102,16 @@ class MyAppState extends State<MyApp> {
                     childAspectRatio: 0.798,
                     mainAxisSpacing: 16.0,
                     crossAxisSpacing: 16.0,
-                    children: Data.products
-                        .where((p) => p.id < 4)
+                    /*children: Data.products
+                        //.where((p) => p.id < 4)
                         .map((p) => ProductCard(p))
-                        .toList(),
+                        .toList(),*/
+                    children: 
+                      Data.products
+                      .where((p) => p.id < 10)
+                      .map((p) => ProductCard(p))
+                      .toList()
+                    ,
                     shrinkWrap: true,
                   ),
                 )

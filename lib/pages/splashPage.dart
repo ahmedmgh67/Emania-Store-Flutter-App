@@ -1,5 +1,6 @@
 import 'package:emania/import.dart';
 import 'dart:core';
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -11,14 +12,20 @@ class _SplashPageState extends State<SplashPage> {
   @override
   initState() {
     super.initState();
-    Data.request(context);
-    Navigator.of(context).pushReplacement(
+    
+    
+  }
+  void a(){
+    var b = Data.request();
+    Timer(Duration(seconds: 2), () => navigate());
+  }
+void navigate (){
+  Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => MyApp(),
       ),
     );
-  }
-
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
