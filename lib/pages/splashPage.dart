@@ -12,14 +12,15 @@ class _SplashPageState extends State<SplashPage> {
   @override
   initState() {
     super.initState();
-    
+    a();
     
   }
   void a(){
-    var b = Data.request();
-    Timer(Duration(seconds: 2), () => navigate());
+    //var b = Data.request();
+    Timer(Duration(seconds: 10), () => navigate());
   }
 void navigate (){
+
   Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => MyApp(),

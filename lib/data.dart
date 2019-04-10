@@ -28,13 +28,14 @@ class Data {
 
   static void request() async {
     var json = await http.get("https://emania-store-api.herokuapp.com/api/products");
-    var decoded =jsonDecode(json.body);
+    var decoded = jsonDecode(json.body);
     print(decoded);
     for (var i = 0; i < decoded.length; i++) {
+      print("adding");
       products.add(
-        Product(decoded["image"][i][0],decoded["name"][i],decoded["price"][i],"",Category("name", Icons.ac_unit),i));  
+        Product(decoded[i]["image"][0],decoded[i]["name"],decoded[i]["price"],"",Category("name", Icons.ac_unit),i));  
     }
-
+    print("the products $products");
     //products = product;
     //return products==null ? false: true;
   }
