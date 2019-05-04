@@ -1,7 +1,7 @@
 import 'import.dart';
 
 void main() {
-  makereq();
+  //makereq();
   runApp(
     MaterialApp(
       theme: ThemeData(
@@ -14,6 +14,6 @@ void main() {
   );
 }
 
-void makereq () async {
+/*void makereq () async {
   await Data.request();
-}
+}*/

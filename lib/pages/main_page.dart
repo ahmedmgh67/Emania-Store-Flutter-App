@@ -1,5 +1,6 @@
 import 'package:emania/import.dart';
 
+import "dart:async";
 class MyApp extends StatefulWidget {
   static ShoppingBasket shoppingBasket = ShoppingBasket();
   static WishList wishList = WishList();
@@ -23,6 +24,13 @@ class MyAppState extends State<MyApp> {
     r.shuffle();
     return r;
   }*/
+
+  @override
+  void initState() {
+    super.initState();
+    request( () => print("requesting") );
+    Timer(Duration(seconds: 3),() => setState(() {isLoaded = true;}) );
+  }
 
 
   @override
@@ -73,7 +81,7 @@ class MyAppState extends State<MyApp> {
           searchTerm = s;
         });
       }, scaffoldKey),
-      body: /*!isLoaded ? Center(child: CircularProgressIndicator(),):*/searchTerm == ""
+      body: !isLoaded ? Center(child: CircularProgressIndicator()) : searchTerm == ""
           ? ListView(
               physics: ClampingScrollPhysics(),
               children: <Widget>[
@@ -107,7 +115,7 @@ class MyAppState extends State<MyApp> {
                         .map((p) => ProductCard(p))
                         .toList(),*/
                     children: 
-                      Data.products
+                      getProducts()
                       .where((p) => p.id < 10)
                       .map((p) => ProductCard(p))
                       .toList()
@@ -119,7 +127,7 @@ class MyAppState extends State<MyApp> {
             )
           : Container(
               child: ListView.builder(
-                itemCount: Data.products
+                itemCount: getProducts()
                     .where(
                       (p) => p.name.toLowerCase().contains(
                             searchTerm.toLowerCase(),
@@ -128,7 +136,7 @@ class MyAppState extends State<MyApp> {
                     .length,
                 itemBuilder: (ctx, index) {
                   return ProductListItem(
-                    Data.products
+                    getProducts()
                         .where(
                           (p) => p.name.toLowerCase().contains(
                                 searchTerm.toLowerCase(),
