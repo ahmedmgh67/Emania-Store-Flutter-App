@@ -32,7 +32,7 @@ class ShoppingBasket {
 
   double get totalPrice {
     double total = 0.0;
-    itemsAndQuantities.forEach((p, q) => total += Data.products[p].cost * q);
+    itemsAndQuantities.forEach((p, q) => total += getProducts()[p].cost * q);
     return total;
   }
 }

@@ -42,7 +42,7 @@ class CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> allProducts = Data.products
+    final List<Product> allProducts = getProducts()
         .where((p) =>
             p.category == widget.category &&
             p.name.toLowerCase().contains(filter.searchTerm.toLowerCase()))

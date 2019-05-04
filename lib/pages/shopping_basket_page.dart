@@ -47,7 +47,7 @@ class ShoppingBasketPageState extends State<ShoppingBasketPage> {
                       itemCount:
                           MyApp.shoppingBasket.itemsAndQuantities.keys.length,
                       itemBuilder: (ctx, index) => ShoppingBasketListItem(
-                          Data.products[MyApp
+                          getProducts()[MyApp
                               .shoppingBasket.itemsAndQuantities.keys
                               .elementAt(index)],
                           () => setState(() {})),
