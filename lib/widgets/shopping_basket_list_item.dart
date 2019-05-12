@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:emania/models/product.dart';
 import 'package:emania/pages/main_page.dart';
@@ -34,8 +34,8 @@ class ShoppingBasketListItemState extends State<ShoppingBasketListItem> {
           Row(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              CachedNetworkImage(
-                imageUrl: widget.product.imageUrl,
+              Image.network(
+                widget.product.imageUrl,
                 width: 100.0,
                 height: 100.0,
                 fit: BoxFit.cover,

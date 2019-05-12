@@ -6,9 +6,10 @@ import 'package:emania/custom_icons.dart';
 import 'package:emania/models/category.dart';
 import 'package:emania/models/product.dart';
 import 'package:dio/dio.dart';
+//import "package:dio/src/" 
 import 'package:http/http.dart' as http;
 import 'dart:io';
-//import 'package:http/io_client.dart';
+import 'package:http/io_client.dart';
 import 'dart:convert';
   //List<Product> product;
 
@@ -21,10 +22,10 @@ import 'dart:convert';
   
 
   void request(Function a) async {
-    // var c = HttpClient();
-    // c.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
-    // var i = IOClient(c);
-    var json = await http.get("http://ec2-18-223-159-157.us-east-2.compute.amazonaws.com/api/products");
+    var c = HttpClient();
+    c.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
+    var i = IOClient(c);
+    var json = await i.get("http://ec2-18-223-159-157.us-east-2.compute.amazonaws.com/api/products");
     var decoded = jsonDecode(json.body);
     print(decoded);
     for (var i = 0; i < decoded.length; i++) {

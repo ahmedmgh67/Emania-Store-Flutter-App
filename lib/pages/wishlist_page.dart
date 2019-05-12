@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:emania/models/product.dart';
 import 'package:emania/pages/main_page.dart';
@@ -51,8 +51,8 @@ class WishListListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        CachedNetworkImage(
-          imageUrl: product.imageUrl,
+        Image.network(
+          product.imageUrl,
           width: 100.0,
           height: 100.0,
           fit: BoxFit.cover,

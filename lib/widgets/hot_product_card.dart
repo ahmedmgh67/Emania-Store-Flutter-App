@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:emania/models/product.dart';
 import 'package:emania/pages/main_page.dart';
@@ -28,8 +28,8 @@ class ProductCardState extends State<ProductCard> {
           children: <Widget>[
             Hero(
               tag: "product_${widget.product.toString()}",
-              child: CachedNetworkImage(
-                imageUrl: widget.product.imageUrl,
+              child: Image.network(
+                widget.product.imageUrl,
                 fit: BoxFit.cover,
                 height: double.infinity,
                 width: double.infinity,

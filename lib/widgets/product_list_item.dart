@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:emania/models/product.dart';
 import 'package:emania/pages/product_page.dart';
@@ -19,8 +19,8 @@ class ProductListItem extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              CachedNetworkImage(
-                imageUrl: product.imageUrl,
+              Image.network(
+                product.imageUrl,
                 width: 100.0,
                 height: 100.0,
                 fit: BoxFit.cover,

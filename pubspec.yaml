@@ -10,13 +10,13 @@ description: Turning inspiration to application
 version: 1.0.0+1
 
 dependencies:
-  cached_network_image: "^0.4.1+1"
+  #cached_network_image: "^0.4.1+1"
   flutter:
     sdk: flutter
   dio: ^2.0.14
   splashscreen: ^1.2.0
   font_awesome_flutter: ^8.4.0
-  #http: ^0.12.0+1
+  http: ^0.12.0
   #shared_preferences: ^0.5.1+1
   connectivity: ^0.4.2
   show_dialog : ^1.0.3
