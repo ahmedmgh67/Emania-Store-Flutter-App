@@ -5,7 +5,7 @@ import 'package:emania/models/product.dart';
 
 class Bloc {
   
-  void req (){
-    http.get("url");
-  }
+  //void req (){
+  //  http.get("url");
+  //}
 }
