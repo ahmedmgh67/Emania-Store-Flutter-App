@@ -7,13 +7,14 @@ import 'package:emania/models/category.dart';
 import 'package:emania/models/product.dart';
 import 'package:dio/dio.dart';
 //import "package:dio/src/" 
+import 'package:emania/import.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
-import 'package:http/io_client.dart';
+import 'package:http/src/io_client.dart';
 import 'dart:convert';
   //List<Product> product;
 
-  List<Product> products;
+  List<Product> products = [];
   List<Product> getProducts(){
     return products;
   }
@@ -21,19 +22,30 @@ import 'dart:convert';
 
   
 
-  void request(Function a) async {
+  void request() async {
     var c = HttpClient();
     c.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
     var i = IOClient(c);
-    var json = await i.get("http://ec2-18-223-159-157.us-east-2.compute.amazonaws.com/api/products");
+    var json = await i.get("http://ec2-18-223-132-197.us-east-2.compute.amazonaws.com/api/products");
     var decoded = jsonDecode(json.body);
     print(decoded);
+    //double ah = double.parse(source);
     for (var i = 0; i < decoded.length; i++) {
       print("adding");
       products.add(
-        Product(decoded[i]["image"][0],decoded[i]["name"],decoded[i]["price"],"",Category("name", Icons.ac_unit),i));  
+        Product(
+          decoded[i]["images"][0],
+          decoded[i]["name"],
+          double.parse(decoded[i]["price"]),
+          "",
+          Category("name", Icons.ac_unit),
+          i
+        )
+      );  
     }
-    a();
+    appState.setState((){
+      appState.pL = products;
+      });
     print("the products $products");
     //products = product;
     //return products==null ? false: true;

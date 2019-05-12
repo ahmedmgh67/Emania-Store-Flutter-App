@@ -1,13 +1,15 @@
 import 'package:emania/import.dart';
 
-import "dart:async";
+
+MyAppState appState;
 class MyApp extends StatefulWidget {
   static ShoppingBasket shoppingBasket = ShoppingBasket();
   static WishList wishList = WishList();
 
   @override
   MyAppState createState() {
-    return new MyAppState();
+    appState = MyAppState();
+    return appState;
   }
 }
 
@@ -16,7 +18,7 @@ class MyAppState extends State<MyApp> {
   String searchTerm = "";
   bool isLoaded = false;
 
-
+  List<Product> pL;
 
 
   /*List<Product> shuffleAndReturn(List<Product> products) {
@@ -28,8 +30,8 @@ class MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    request( () => print("requesting") );
-    Timer(Duration(seconds: 3),() => setState(() {isLoaded = true;}) );
+    request();
+    //Timer(Duration(seconds: 3),() => setState(() {isLoaded = true;}) );
   }
 
 
@@ -81,7 +83,7 @@ class MyAppState extends State<MyApp> {
           searchTerm = s;
         });
       }, scaffoldKey),
-      body: !isLoaded ? Center(child: CircularProgressIndicator()) : searchTerm == ""
+      body: pL == null ? Center(child: CircularProgressIndicator()) : searchTerm == ""
           ? ListView(
               physics: ClampingScrollPhysics(),
               children: <Widget>[
@@ -115,7 +117,7 @@ class MyAppState extends State<MyApp> {
                         .map((p) => ProductCard(p))
                         .toList(),*/
                     children: 
-                      getProducts()
+                      pL
                       .where((p) => p.id < 10)
                       .map((p) => ProductCard(p))
                       .toList()
@@ -127,7 +129,7 @@ class MyAppState extends State<MyApp> {
             )
           : Container(
               child: ListView.builder(
-                itemCount: getProducts()
+                itemCount: pL
                     .where(
                       (p) => p.name.toLowerCase().contains(
                             searchTerm.toLowerCase(),

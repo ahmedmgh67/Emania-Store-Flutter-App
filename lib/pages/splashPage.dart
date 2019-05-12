@@ -17,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
   }
   void a(){
     //var b = Data.request();
-    Timer(Duration(seconds: 10), () => navigate());
+    Timer(Duration(seconds: 2), () => navigate());
   }
 void navigate (){
 
