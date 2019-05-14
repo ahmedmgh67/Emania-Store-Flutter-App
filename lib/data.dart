@@ -8,6 +8,9 @@ import 'package:http/src/io_client.dart';
 import 'dart:convert';
 
 List<Product> products = [];
+List<Category> categories = [];
+List<Category> trycato = []; 
+
 List<Product> getProducts(){
   return products;
 }
@@ -24,15 +27,22 @@ void request() async {
         decoded[i]["images"][0],
         decoded[i]["name"],
         double.parse(decoded[i]["price"]),
-        "",
+        decoded[i]["category"],
         Category("name", Icons.ac_unit),
-        i
+        decoded[i]["_id"]
       )
-    );  
+    );
+    trycato.map((f) {
+      if (decoded[i]["category"] == f.name){
+        trycato.add(
+          Category(decoded[i]["category"], Icons.ac_unit)
+        );
+      }
+    });
   }
   appState.setState((){
     appState.pL = products;
-    });
+  });
 }
 class Data {
   static List<Category> categories = [

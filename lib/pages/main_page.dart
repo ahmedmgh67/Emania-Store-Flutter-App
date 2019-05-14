@@ -116,12 +116,12 @@ class MyAppState extends State<MyApp> {
                         //.where((p) => p.id < 4)
                         .map((p) => ProductCard(p))
                         .toList(),*/
-                    children: 
+                    /*children: 
                       pL
                       .where((p) => p.id < 10)
                       .map((p) => ProductCard(p))
-                      .toList()
-                    ,
+                      .toList(),*/
+                    children: hotProducts(),
                     shrinkWrap: true,
                   ),
                 )
@@ -151,4 +151,14 @@ class MyAppState extends State<MyApp> {
             ),
     );
   }
+  List<Widget> hotProducts (){
+    List a = [];
+    for (var i = 0; i < 10; i++) {
+      a.add(pL[i]);
+    }
+    a
+      .map((f) => ProductCard(f))
+      .toList();
+    return a;
+  } 
 }
