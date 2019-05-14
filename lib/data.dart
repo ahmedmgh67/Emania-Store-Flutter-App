@@ -15,7 +15,7 @@ void request() async {
   var c = HttpClient();
   c.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
   var i = IOClient(c);
-  var json = await i.get("ec2-18-191-137-0.us-east-2.compute.amazonaws.com/api/products");
+  var json = await i.get("http://sec2-18-191-137-0.us-east-2.compute.amazonaws.com/api/products");
   var decoded = jsonDecode(json.body);
   //double ah = double.parse(source);
   for (var i = 0; i < decoded.length; i++) {
