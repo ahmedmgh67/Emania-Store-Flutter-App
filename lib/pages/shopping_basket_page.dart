@@ -53,9 +53,18 @@ class ShoppingBasketPageState extends State<ShoppingBasketPage> {
                           () => setState(() {})),
                     ),
                   ),
+                  Text(
+                    MyApp.shoppingBasket.totalPrice.toString() + "  EGP",
+                    style: TextStyle(
+                      fontSize: 20.0
+                    )
+                  ),
                   FlatButton(
                     onPressed: () =>
-                        print("Pressed: " + "ShoppingBasketPageState"),
+                        //print("Pressed: " + "ShoppingBasketPageState"),
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => CheckoutPage(MyApp.shoppingBasket.totalPrice))),
                     child: Center(
                       child: Text(
                         "Pay Now",

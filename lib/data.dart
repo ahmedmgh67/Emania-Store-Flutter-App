@@ -1,58 +1,40 @@
-//https://jsonplaceholder.typicode.com/posts
-//https://emania.000webhostapp.com/wp-json/wc/v3/products
-//https://emania.000webhostapp.com/wp-json/wc/v3/products?consumer_key=ck_196b5a3683683f2f41a27d8fbc668b771b7a4ee5&consumer_secret=cs_724d274fcbc12eccb4043848af53a7514a019690
 import 'package:flutter/material.dart';
 import 'package:emania/custom_icons.dart';
 import 'package:emania/models/category.dart';
 import 'package:emania/models/product.dart';
-import 'package:dio/dio.dart';
-//import "package:dio/src/" 
 import 'package:emania/import.dart';
-import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'package:http/src/io_client.dart';
 import 'dart:convert';
-  //List<Product> product;
 
-  List<Product> products = [];
-  List<Product> getProducts(){
-    return products;
+List<Product> products = [];
+List<Product> getProducts(){
+  return products;
+}
+void request() async {
+  var c = HttpClient();
+  c.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
+  var i = IOClient(c);
+  var json = await i.get("http://ec2-18-223-132-197.us-east-2.compute.amazonaws.com/api/products");
+  var decoded = jsonDecode(json.body);
+  //double ah = double.parse(source);
+  for (var i = 0; i < decoded.length; i++) {
+    products.add(
+      Product(
+        decoded[i]["images"][0],
+        decoded[i]["name"],
+        double.parse(decoded[i]["price"]),
+        "",
+        Category("name", Icons.ac_unit),
+        i
+      )
+    );  
   }
-//ec2-18-223-159-157.us-east-2.compute.amazonaws.com/api/products
-
-  
-
-  void request() async {
-    var c = HttpClient();
-    c.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
-    var i = IOClient(c);
-    var json = await i.get("http://ec2-18-223-132-197.us-east-2.compute.amazonaws.com/api/products");
-    var decoded = jsonDecode(json.body);
-    print(decoded);
-    //double ah = double.parse(source);
-    for (var i = 0; i < decoded.length; i++) {
-      print("adding");
-      products.add(
-        Product(
-          decoded[i]["images"][0],
-          decoded[i]["name"],
-          double.parse(decoded[i]["price"]),
-          "",
-          Category("name", Icons.ac_unit),
-          i
-        )
-      );  
-    }
-    appState.setState((){
-      appState.pL = products;
-      });
-    print("the products $products");
-    //products = product;
-    //return products==null ? false: true;
-  }
+  appState.setState((){
+    appState.pL = products;
+    });
+}
 class Data {
-
-
   static List<Category> categories = [
     Category("Plant", CustomIcons.plant),
     Category("Lamp", CustomIcons.desk_lamp),

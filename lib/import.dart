@@ -4,6 +4,7 @@ export 'package:emania/pages/main_page.dart';
 export 'package:emania/pages/shopping_basket_page.dart';
 export 'package:emania/pages/splashPage.dart';
 export 'package:emania/pages/wishlist_page.dart';
+export 'package:emania/pages/checkoutPage.dart';
 export 'package:emania/models/category.dart';
 export 'package:emania/models/category_filter.dart';
 export 'package:emania/models/product.dart';
