@@ -4,6 +4,7 @@ import 'package:emania/models/category.dart';
 import 'package:emania/models/category_filter.dart';
 import 'package:emania/models/product.dart';
 import 'package:emania/widgets/product_list_item.dart';
+import 'package:emania/import.dart';
 
 class CategoryPage extends StatefulWidget {
   final Category category;
@@ -42,12 +43,14 @@ class CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> allProducts = getProducts()
+    List<Product> allProducts =
+        getProducts().where((p) => p.category == widget.category).toList();
+    /*/*final List<Product> allProducts = getProducts()
         .where((p) =>
-            p.category == widget.category &&
-            p.name.toLowerCase().contains(filter.searchTerm.toLowerCase()))
+            p.category == widget.category //&&
+            /*p.name.toLowerCase().contains(filter.searchTerm.toLowerCase())*/)
         .toList();
-
+*/*/
     switch (sortBy) {
       case SortBy.LowestPrice:
         allProducts.sort((p1, p2) => p1.cost < p2.cost ? 0 : 1);

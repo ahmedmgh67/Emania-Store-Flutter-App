@@ -4,46 +4,119 @@ import 'package:emania/models/category.dart';
 import 'package:emania/models/product.dart';
 import 'package:emania/import.dart';
 import 'dart:io';
-import 'package:http/src/io_client.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'dart:convert';
 
 List<Product> products = [];
 List<Category> categories = [];
-List<Category> trycato = []; 
 
-List<Product> getProducts(){
+List<Product> getProducts() {
   return products;
 }
+
+List<Category> getCategories() {
+  return categories;
+}
+
+Category getCategory(name) {
+  return Category(name, Icons.format_align_center);
+}
+
 void request() async {
   var c = HttpClient();
-  c.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
+  c.badCertificateCallback =
+      ((X509Certificate cert, String host, int port) => true);
   var i = IOClient(c);
-  var json = await i.get("http://sec2-18-191-137-0.us-east-2.compute.amazonaws.com/api/products");
+  var json = await i.get(
+      "http://ec2-18-191-137-0.us-east-2.compute.amazonaws.com/api/products");
   var decoded = jsonDecode(json.body);
-  //double ah = double.parse(source);
+
   for (var i = 0; i < decoded.length; i++) {
-    products.add(
-      Product(
+    categories.add(Category(decoded[i]["category"], Icons.format_align_center));
+    products.add(Product(
         decoded[i]["images"][0],
         decoded[i]["name"],
         double.parse(decoded[i]["price"]),
-        decoded[i]["category"],
-        Category("name", Icons.ac_unit),
-        decoded[i]["_id"]
-      )
-    );
-    trycato.map((f) {
-      if (decoded[i]["category"] == f.name){
-        trycato.add(
-          Category(decoded[i]["category"], Icons.ac_unit)
-        );
-      }
-    });
+        decoded[i]["desc"],
+        getCategory(decoded[i][
+            "category"]), //Category(decoded[i]["category"], Icons.format_align_center),
+        i));
   }
-  appState.setState((){
+
+  appState.setState(() {
+    appState.cL = categories;
     appState.pL = products;
   });
 }
+
+Category getCategoryFromName(name) {
+  return categories
+      .firstWhere((c) => c.name.toLowerCase() == name.toString().toLowerCase());
+}
+
+void paymentCCDC(ccn, ey, em, cvv, name, address, phone) async {
+  String merchantCode = "";
+
+  String customerProfileId = "7uyA76gf2";
+  var tokenRes = await http.post(
+      "https://www.atfawry.com/ECommerceWeb/Fawry/cards/cardToken",
+      body: {
+        "mercahntCode": merchantCode,
+        "customerProfileId": customerProfileId,
+        "customerMobile": "01000000000",
+        "customerEmail": "test@example.com",
+        "cardNumber": "",
+        "expiryYear": "",
+        "expiryMonth": "",
+        "cvv": ""
+      });
+  var tokenDecoded = jsonDecode(tokenRes.body);
+  var checkoutRes = await http.post(
+    "https://www.atfawry.com/ECommerceWeb/Fawry/payments/charge",
+    body: {
+      "merchantCode": merchantCode,
+      "merchantRefNum": "7uyA76gf2",
+      "customerProfileId": "7uyA76gf2",
+      "customerMobile": "01000000200",
+      "customerEmail": "77@test.com",
+      "paymentMethod": "CARD",
+      "amount": MyApp.shoppingBasket.totalPrice,
+      "currencyCode": "EGP",
+      "description": "the charge request description",
+      "cardToken": tokenDecoded["card"]["token"],
+      "chargeItems": [
+        {
+          "itemId": "897fa8e81be26df25db592e81c31c",
+          "description": "asdasd",
+          "price": 15.20,
+          "quantity": 1
+        }
+      ],
+      "signature":
+          "fc82831bcd928d22337e9eace61d30c75d6fc027f59f0be571f90ab2231967fa"
+    },
+  );
+  var checkoutDecoded = jsonDecode(checkoutRes.body);
+  var orderRes = await http.post(
+    "url",
+    body: {
+      "": "",
+    },
+  );
+  var orderDecoded = jsonDecode(orderRes.body);
+}
+
+void paymentCOD(name, address, phone) async {
+  var orderRes = await http.post(
+    "url",
+    body: {
+      "": "",
+    },
+  );
+  var orderDecoded = jsonDecode(orderRes.body);
+}
+
 class Data {
   static List<Category> categories = [
     Category("Plant", CustomIcons.plant),
@@ -51,8 +124,6 @@ class Data {
     Category("Chair", CustomIcons.chair),
     Category("Other", Icons.timeline)
   ];
-
-
 
   // static List<Product> products = [
   //   Product(

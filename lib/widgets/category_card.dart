@@ -20,7 +20,7 @@ class CategoryCard extends StatelessWidget {
             top: 16.0,
             bottom: 16.0,
             left: index == 0 ? 16.0 : 8.0,
-            right: index == Data.categories.length - 1 ? 16.0 : 8.0),
+            right: index == getCategories().length - 1 ? 16.0 : 8.0),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(6.0),

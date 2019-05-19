@@ -6,7 +6,7 @@ class Product {
   final double cost;
   final String description;
   final Category category;
-  final String id;
+  final int id;
   Product(this.imageUrl, this.name, this.cost, this.description, this.category,
       this.id);
 

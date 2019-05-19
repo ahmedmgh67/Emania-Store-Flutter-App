@@ -27,7 +27,7 @@ class ProductCardState extends State<ProductCard> {
           overflow: Overflow.clip,
           children: <Widget>[
             Hero(
-              tag: "product_${widget.product.toString()}",
+              tag: "product_${widget.product}",
               child: Image.network(
                 widget.product.imageUrl,
                 fit: BoxFit.cover,

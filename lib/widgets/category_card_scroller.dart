@@ -13,9 +13,9 @@ class CategoryCardScroller extends StatelessWidget {
           },
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: Data.categories.length,
+            itemCount: getCategories().length,
             itemBuilder: (context, index) =>
-                CategoryCard(Data.categories[index], index),
+                CategoryCard(getCategories()[index], index),
           ),
         ));
   }

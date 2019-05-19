@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:emania/models/product.dart';
 import 'package:emania/pages/main_page.dart';
+import 'package:emania/import.dart';
 
 class WishListPage extends StatelessWidget {
   @override
@@ -49,15 +50,18 @@ class WishListListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Image.network(
-          product.imageUrl,
-          width: 100.0,
-          height: 100.0,
-          fit: BoxFit.cover,
-        ),
-      ],
+    return InkWell(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductPage(product))),
+      child: Row(
+        children: <Widget>[
+          Image.network(
+            product.imageUrl,
+            width: 100.0,
+            height: 100.0,
+            fit: BoxFit.cover,
+          ),
+        ],
+      ),
     );
   }
 }
