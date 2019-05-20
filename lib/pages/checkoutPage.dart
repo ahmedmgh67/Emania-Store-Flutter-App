@@ -124,7 +124,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   "Continue to Payment",
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () => continueToPayment(),
                 color: Theme.of(context).primaryColor,
                 padding: EdgeInsets.symmetric(
                   vertical: 20.0,

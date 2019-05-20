@@ -44,7 +44,7 @@ class CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     List<Product> allProducts =
-        getProducts().where((p) => p.category == widget.category).toList();
+        getProducts().where((p) => p.category.name == widget.category.name).toList();
     /*/*final List<Product> allProducts = getProducts()
         .where((p) =>
             p.category == widget.category //&&

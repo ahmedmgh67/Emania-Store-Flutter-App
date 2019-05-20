@@ -34,7 +34,7 @@ class MyAppState extends State<MyApp> {
     return Scaffold(
       drawer: cL == null
           ? Center(
-              child: SpinKitFoldingCube(color: Theme.of(context).primaryColor))
+              child: SpinKitDoubleBounce(color: Theme.of(context).primaryColor))
           : Container(
               padding: EdgeInsets.only(left: 16.0, top: 32.0),
               width: 250.0,
@@ -81,7 +81,7 @@ class MyAppState extends State<MyApp> {
       }, scaffoldKey),
       body: pL == null
           ? Center(
-              child: SpinKitFoldingCube(color: Theme.of(context).primaryColor))
+              child: SpinKitDoubleBounce(color: Theme.of(context).primaryColor))
           : searchTerm == ""
               ? ListView(
                   physics: ClampingScrollPhysics(),

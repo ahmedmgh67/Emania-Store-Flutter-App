@@ -2,6 +2,7 @@ import 'package:emania/import.dart';
 import 'dart:core';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -13,38 +14,45 @@ class _SplashPageState extends State<SplashPage> {
   initState() {
     super.initState();
     a();
-    
   }
-  void a(){
-    //var b = Data.request();
-    Timer(Duration(seconds: 2), () => navigate());
-  }
-void navigate (){
 
-  Navigator.of(context).pushReplacement(
+  void a() {
+    //var b = Data.request();
+    Timer(Duration(seconds: 4), () => navigate());
+  }
+
+  void navigate() {
+    Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => MyApp(),
       ),
     );
-}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color.fromRGBO(149, 27, 57, 100.0),
+        color: Colors.white, //Color.fromRGBO(149, 27, 57, 100.0),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-              child: Image.asset("media/emania-40.png"),
-              width: 200.0,
-              height: 400.0,
+              child: Image.asset(
+                "media/emania40.png",
+                fit: BoxFit.fill,
+              ),
+              width: 230.0,
+              height: 160.0,
             ),
             SizedBox(
-              height: 100.0,
+              height: 40.0,
             ),
-            CircularProgressIndicator(),
+            SpinKitDoubleBounce(
+              color: Theme.of(context).primaryColor,
+            ),
           ],
         ),
       ),

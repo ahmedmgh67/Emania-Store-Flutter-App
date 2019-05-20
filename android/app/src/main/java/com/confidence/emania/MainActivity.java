@@ -1,4 +1,4 @@
-package com.example.emania;
+package com.confidence.emania;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

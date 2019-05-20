@@ -29,7 +29,7 @@ void request() async {
       ((X509Certificate cert, String host, int port) => true);
   var i = IOClient(c);
   var json = await i.get(
-      "http://ec2-18-191-137-0.us-east-2.compute.amazonaws.com/api/products");
+      "http://ec2-52-14-74-144.us-east-2.compute.amazonaws.com/api/products");
   var decoded = jsonDecode(json.body);
 
   for (var i = 0; i < decoded.length; i++) {
@@ -44,6 +44,9 @@ void request() async {
         i));
   }
 
+  categories.toSet();//.toList(growable: true);
+  //categories.
+
   appState.setState(() {
     appState.cL = categories;
     appState.pL = products;
@@ -51,7 +54,7 @@ void request() async {
 }
 
 Category getCategoryFromName(name) {
-  return categories
+  return categories 
       .firstWhere((c) => c.name.toLowerCase() == name.toString().toLowerCase());
 }
 
@@ -100,7 +103,7 @@ void paymentCCDC(ccn, ey, em, cvv, name, address, phone) async {
   var checkoutDecoded = jsonDecode(checkoutRes.body);
   var orderRes = await http.post(
     "url",
-    body: {
+    body: { 
       "": "",
     },
   );
@@ -109,12 +112,18 @@ void paymentCCDC(ccn, ey, em, cvv, name, address, phone) async {
 
 void paymentCOD(name, address, phone) async {
   var orderRes = await http.post(
-    "url",
+    "http://ec2-52-14-74-144.us-east-2.compute.amazonaws.com/api/orders",
     body: {
-      "": "",
+      "payment": "Cash On delivery",
+      "user":name,
+      "address": address,
+      "phone": phone,
+      "price":MyApp.shoppingBasket.totalPrice.toString(),
+      "products":MyApp.shoppingBasket.itemsAndQuantities.keys.map((itemId) => getProducts()[itemId])
     },
   );
   var orderDecoded = jsonDecode(orderRes.body);
+
 }
 
 class Data {
