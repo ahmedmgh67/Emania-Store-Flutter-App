@@ -67,12 +67,12 @@ void paymentCCDC(ccn, ey, em, cvv, name, address, phone) async {
       body: {
         "mercahntCode": merchantCode,
         "customerProfileId": customerProfileId,
-        "customerMobile": "01000000000",
+        "customerMobile": phone,
         "customerEmail": "test@example.com",
-        "cardNumber": "",
-        "expiryYear": "",
-        "expiryMonth": "",
-        "cvv": ""
+        "cardNumber": ccn,
+        "expiryYear": ey,
+        "expiryMonth": em,
+        "cvv": cvv
       });
   var tokenDecoded = jsonDecode(tokenRes.body);
   var checkoutRes = await http.post(
@@ -82,7 +82,7 @@ void paymentCCDC(ccn, ey, em, cvv, name, address, phone) async {
       "merchantRefNum": "7uyA76gf2",
       "customerProfileId": "7uyA76gf2",
       "customerMobile": "01000000200",
-      "customerEmail": "77@test.com",
+      "customerEmail": "ahmedmgh67@gmail.com",
       "paymentMethod": "CARD",
       "amount": MyApp.shoppingBasket.totalPrice,
       "currencyCode": "EGP",

@@ -15,6 +15,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   String address = "";
   String phone = "";
   String name = "";
+//karimmohamed200510@gmail.com
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       height: 3.0,
                       color: Colors.black,
                     ),
-                    Container(
+                    /*Container(
                       child: CheckboxListTile(
                           title: Text("Credit Card or Debit Card"),
                           subtitle: Text(
@@ -48,7 +49,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           controlAffinity: ListTileControlAffinity.leading,
                           value: ccdc,
                           onChanged: (value) => codccdc(value, "ccdc")),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
