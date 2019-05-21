@@ -180,6 +180,38 @@ class _CheckoutPageState extends State<CheckoutPage> {
       }
     }
   }
+
+  void showaboutDialog({BuildContext context, String title, String content, String buText,Function onPress}) {
+  // flutter defined function
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text(
+          title,
+          //textAlign: TextAlign.center,
+        ),
+        content: new Text(content),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text("Cancel"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          FlatButton(
+            child: Text(buText),
+            onPressed: onPress,
+          )
+        ],
+      );
+    },
+  );
+}
+
+
   /*
   Future<void> _onStartCardEntryFlow() async {
     print("starting");
